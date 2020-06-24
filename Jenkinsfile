@@ -21,5 +21,11 @@ pipeline {
                 sh "mvn package"
             }
         }
+        stage('deploy') {
+            steps {
+                sh "scp /root/.jenkins/workspace/pipeline2/target/my-app-1.0-SNAPSHOT.jar 35.222.19.25:/opt/apache-tomcat-9.0.36/webapps"
+                sh "echo file deployed!"
+            }
+        }
     }
 }
